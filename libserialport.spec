@@ -4,9 +4,9 @@ Version:	0.1
 Release:	1
 License:	GPL v3+
 Group:		Libraries
-URL:		http://www.sigrok.org/
 Source0:	http://sigrok.org/download/source/libserialport/%{name}-%{version}.tar.gz
 # Source0-md5:	37b226331432a571f247b6406af606db
+URL:		http://www.sigrok.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	doxygen
@@ -66,6 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc doxy/html-api/*
-%{_includedir}/libserialport.h
 %attr(755,root,root) %{_libdir}/libserialport.so
+%{_includedir}/libserialport.h
 %{_pkgconfigdir}/libserialport.pc
