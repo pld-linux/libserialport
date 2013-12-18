@@ -6,7 +6,7 @@ License:	GPL v3+
 Group:		Libraries
 Source0:	http://sigrok.org/download/source/libserialport/%{name}-%{version}.tar.gz
 # Source0-md5:	37b226331432a571f247b6406af606db
-URL:		http://www.sigrok.org/
+URL:		http://sigrok.org/wiki/Libserialport
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	doxygen
