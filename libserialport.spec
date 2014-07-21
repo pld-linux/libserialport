@@ -5,16 +5,17 @@
 Summary:	Cross-platform serial port access library
 Summary(pl.UTF-8):	Wieloplatformowa biblioteka dostępu do portu szeregowego
 Name:		libserialport
-Version:	0.1
-Release:	1
-License:	GPL v3+
+Version:	0.1.0
+Release:	2
+License:	LGPL v3+
 Group:		Libraries
 Source0:	http://sigrok.org/download/source/libserialport/%{name}-%{version}.tar.gz
-# Source0-md5:	37b226331432a571f247b6406af606db
+# Source0-md5:	750fa8dc1baf26b42fb4cadd9327674b
 URL:		http://sigrok.org/wiki/Libserialport
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	doxygen
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig >= 1:0.22
 BuildRequires:	udev-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -35,6 +36,7 @@ Summary:	Development files for libserialport
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki libserialport
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	udev-devel
 
 %description devel
 This package contains the header files for developing applications
@@ -62,11 +64,9 @@ Statyczna biblioteka libserialport.
 %build
 %{__libtoolize}
 %{__aclocal}
-%{__autoheader}
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-all-drivers \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
 
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libserialport.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -87,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README NEWS
+%doc ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libserialport.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libserialport.so.0
 
