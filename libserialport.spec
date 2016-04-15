@@ -5,12 +5,12 @@
 Summary:	Cross-platform serial port access library
 Summary(pl.UTF-8):	Wieloplatformowa biblioteka dostępu do portu szeregowego
 Name:		libserialport
-Version:	0.1.0
-Release:	3
+Version:	0.1.1
+Release:	1
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://sigrok.org/download/source/libserialport/%{name}-%{version}.tar.gz
-# Source0-md5:	750fa8dc1baf26b42fb4cadd9327674b
+# Source0-md5:	b93f0325a6157198152b5bd7e8182b51
 URL:		http://sigrok.org/wiki/Libserialport
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
