@@ -16,8 +16,6 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	doxygen
 BuildRequires:	libtool >= 2:2
-BuildRequires:	pkgconfig >= 1:0.22
-BuildRequires:	udev-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,9 +61,10 @@ Statyczna biblioteka libserialport.
 
 %build
 %{__libtoolize}
-%{__aclocal}
-%{__automake}
+%{__aclocal} -I autostuff
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
