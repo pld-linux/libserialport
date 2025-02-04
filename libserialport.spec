@@ -1,21 +1,22 @@
 #
 # Conditional build:
-%bcond_without	static_libs	# static library build
+%bcond_without	static_libs	# static library
 #
 Summary:	Cross-platform serial port access library
 Summary(pl.UTF-8):	Wieloplatformowa biblioteka dostępu do portu szeregowego
 Name:		libserialport
-Version:	0.1.1
+Version:	0.1.2
 Release:	1
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://sigrok.org/download/source/libserialport/%{name}-%{version}.tar.gz
-# Source0-md5:	b93f0325a6157198152b5bd7e8182b51
+# Source0-md5:	376ff56e6dc43c0aa964f9adccc17929
 URL:		http://sigrok.org/wiki/Libserialport
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	doxygen
 BuildRequires:	libtool >= 2:2
+BuildRequires:	rpm-build >= 4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,6 +57,18 @@ Static libserialport library.
 %description static -l pl.UTF-8
 Statyczna biblioteka libserialport.
 
+%package apidocs
+Summary:	API documentation for libserialport library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki libserialport
+Group:		Documentation
+BuildArch:	noarch
+
+%description apidocs
+API documentation for libserialport library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki libserialport.
+
 %prep
 %setup -q
 
@@ -95,7 +108,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doxy/html-api/*
 %attr(755,root,root) %{_libdir}/libserialport.so
 %{_includedir}/libserialport.h
 %{_pkgconfigdir}/libserialport.pc
@@ -105,3 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libserialport.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc doxy/html-api/*
